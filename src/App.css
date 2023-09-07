@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+  border-radius: 50px;
+}
+
+.searchInput {
+  border-radius: 5px;
+  border-color: rgb(220, 220, 220);
+}
