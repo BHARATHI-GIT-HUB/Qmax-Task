@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  max-width: 100vw;
 }
 
 .App-logo {
@@ -51,4 +52,12 @@
 .searchInput {
   border-radius: 5px;
   border-color: rgb(220, 220, 220);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* This ensures the container takes up the full viewport height */
 }

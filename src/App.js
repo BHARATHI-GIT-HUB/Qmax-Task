@@ -176,6 +176,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
+import "./App.css";
 
 function App() {
   const [data, setData] = useState([]);
@@ -187,22 +188,17 @@ function App() {
     const savedSearchQuery = localStorage.getItem("searchQuery");
     const savedFilteredData = JSON.parse(localStorage.getItem("filteredData"));
 
-    if (savedSearchQuery) {
+    if (savedSearchQuery && savedFilteredData) {
       setSearchQuery(savedSearchQuery);
-      // handleSearch(savedSearchQuery);
-      console.log(filteredData, savedFilteredData, savedSearchQuery);
       setFilteredData(savedFilteredData);
-      setDataOnReload(savedFilteredData);
     } else {
       fetchData();
     }
-    console.log(filteredData, "on");
   }, []);
 
   useEffect(() => {
     localStorage.setItem("searchQuery", searchQuery);
     localStorage.setItem("filteredData", JSON.stringify(filteredData));
-    console.log(filteredData, JSON.parse(localStorage.getItem("filteredData")));
   }, [searchQuery, filteredData]);
 
   const fetchData = async () => {
@@ -235,17 +231,12 @@ function App() {
     }
   };
 
-  const setDataOnReload = (data) => {
-    setFilteredData(data);
-    console.log(filteredData, "set", data);
-  };
-
   const CenteredBox = styled(Box)(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "100vh",
+    minWidth: "100vw",
   }));
 
   const handleDeletePost = (idToDelete) => {
@@ -289,17 +280,38 @@ function App() {
       </AppBar>
       <CenteredBox>
         <Grid container spacing={2} justifyContent="center">
-          {filteredData.map((post, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Cardcomp
-                id={post.id}
-                title={post.title}
-                body={post.body}
-                onDelete={() => handleDeletePost(post.id)}
-                onOpenComments={() => handleOpenComments(post.id)}
-              />
-            </Grid>
-          ))}
+          {JSON.parse(localStorage.getItem("filteredData")) &&
+          localStorage.getItem("searchQuery") ? (
+            <>
+              {JSON.parse(localStorage.getItem("filteredData")).map(
+                (post, index) => (
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <Cardcomp
+                      id={post.id}
+                      title={post.title}
+                      body={post.body}
+                      onDelete={() => handleDeletePost(post.id)}
+                      onOpenComments={() => handleOpenComments(post.id)}
+                    />
+                  </Grid>
+                )
+              )}
+            </>
+          ) : (
+            <>
+              {filteredData.map((post, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                  <Cardcomp
+                    id={post.id}
+                    title={post.title}
+                    body={post.body}
+                    onDelete={() => handleDeletePost(post.id)}
+                    onOpenComments={() => handleOpenComments(post.id)}
+                  />
+                </Grid>
+              ))}
+            </>
+          )}
         </Grid>
       </CenteredBox>
       <Dialog open={selectedPost !== null} onClose={handleCloseComments}>
