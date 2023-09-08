@@ -12,17 +12,7 @@ const Cardcomp = ({ id, body, title, onDelete, setpostId, setdialogPop }) => {
   };
 
   return (
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      md={4}
-      onClick={() => {
-        console.log(setpostId);
-        setpostId(id);
-        setdialogPop(true);
-      }}
-    >
+    <Grid item xs={12} sm={6} md={4}>
       <Card
         sx={{
           minWidth: 320,
@@ -38,7 +28,13 @@ const Cardcomp = ({ id, body, title, onDelete, setpostId, setdialogPop }) => {
         <CardContent
           sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
         >
-          <div>
+          <div
+            onClick={() => {
+              console.log(setpostId);
+              setpostId(id);
+              setdialogPop(true);
+            }}
+          >
             <Typography variant="h6" component="div">
               {title}
             </Typography>

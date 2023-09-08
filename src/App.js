@@ -49,10 +49,6 @@ function App() {
     );
   }, [dialogPop]);
 
-  useEffect(() => {
-    console.log(postId, dialogPop, dialogData);
-  }, [postId, dialogPop]);
-
   const fetchData = async (url, dataFor) => {
     try {
       const response = await fetch(url);
@@ -184,6 +180,7 @@ function App() {
           {dialogPop &&
             dialogData.map((Comment, index) => (
               <Box
+                key={index}
                 sx={{
                   minWidth: 320,
                   maxWidth: 350,
@@ -193,13 +190,14 @@ function App() {
                   borderRadius: 1,
                   display: "flex",
                   flexDirection: "column",
-                  textAlign: "center",
+                  textAlign: "start",
+                  paddingLeft: "10px",
                 }}
                 style={{ border: "1x solid black" }}
               >
-                <p>{Comment.name}</p>
-                <p>{Comment.email}</p>
-                <p>{Comment.body}</p>
+                <p>Name : {Comment.name}</p>
+                <p>Email : {Comment.email}</p>
+                <p>Body : {Comment.body}</p>
               </Box>
             ))}
           <Button onClick={handleCloseComments}>Close</Button>
