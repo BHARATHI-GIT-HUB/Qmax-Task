@@ -15,7 +15,7 @@ const Cardcomp = ({ id, body, title, onDelete }) => {
     <Grid item xs={12} sm={6} md={4}>
       <Card
         sx={{
-          minWidth: 350,
+          minWidth: 320,
           maxWidth: 350,
           height: 240,
           border: 1,

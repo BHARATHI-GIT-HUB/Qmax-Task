@@ -278,7 +278,7 @@ function App() {
           Refresh State
         </Button>
       </AppBar>
-      <CenteredBox>
+      <CenteredBox style={{ marginLeft: "5px", marginTop: "10px" }}>
         <Grid container spacing={2} justifyContent="center">
           {JSON.parse(localStorage.getItem("filteredData")) &&
           localStorage.getItem("searchQuery") ? (
@@ -300,7 +300,7 @@ function App() {
           ) : (
             <>
               {filteredData.map((post, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                   <Cardcomp
                     id={post.id}
                     title={post.title}
