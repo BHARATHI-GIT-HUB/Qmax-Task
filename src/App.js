@@ -96,10 +96,6 @@ function App() {
     localStorage.setItem("filteredData", JSON.stringify(updatedData));
   };
 
-  const handleOpenComments = (currPostId) => {
-    setSelectedPost(currPostId);
-  };
-
   const handleCloseComments = () => {
     setdialogPop(false);
   };
@@ -107,13 +103,9 @@ function App() {
   const handleReload = () => {
     localStorage.removeItem("searchQuery");
     localStorage.removeItem("filteredData");
-    fetchData();
+    setFilteredData(data);
     setSearchQuery("");
   };
-
-  const filteredDataFromLocalStorage = JSON.parse(
-    localStorage.getItem("filteredData")
-  );
 
   return (
     <>
@@ -134,7 +126,7 @@ function App() {
       </AppBar>
       <CenteredBox style={{ marginLeft: "5px", marginTop: "10px" }}>
         <Grid container spacing={2} justifyContent="center">
-          {filteredDataFromLocalStorage &&
+          {JSON.parse(localStorage.getItem("filteredData")) &&
           localStorage.getItem("searchQuery") ? (
             <>
               {JSON.parse(localStorage.getItem("filteredData")).map(
@@ -148,7 +140,6 @@ function App() {
                       postId={postId}
                       setpostId={setpostId}
                       setdialogPop={setdialogPop}
-                      onOpenComments={() => handleOpenComments(post.id)}
                     />
                   </Grid>
                 )
@@ -166,7 +157,6 @@ function App() {
                     postId={postId}
                     setpostId={setpostId}
                     setdialogPop={setdialogPop}
-                    onOpenComments={() => handleOpenComments(post.id)}
                   />
                 </Grid>
               ))}
