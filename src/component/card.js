@@ -6,13 +6,23 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 
-const Cardcomp = ({ id, body, title, onDelete }) => {
+const Cardcomp = ({ id, body, title, onDelete, setpostId, setdialogPop }) => {
   const handleDeleteClick = () => {
     onDelete(id);
   };
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={4}
+      onClick={() => {
+        console.log(setpostId);
+        setpostId(id);
+        setdialogPop(true);
+      }}
+    >
       <Card
         sx={{
           minWidth: 320,
@@ -29,7 +39,7 @@ const Cardcomp = ({ id, body, title, onDelete }) => {
           sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
         >
           <div>
-            <Typography variant="h5" component="div">
+            <Typography variant="h6" component="div">
               {title}
             </Typography>
             <Typography
