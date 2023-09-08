@@ -30,7 +30,6 @@ const Cardcomp = ({ id, body, title, onDelete, setpostId, setdialogPop }) => {
         >
           <div
             onClick={() => {
-              console.log(setpostId);
               setpostId(id);
               setdialogPop(true);
             }}

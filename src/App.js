@@ -20,7 +20,7 @@ function App() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedPost, setSelectedPost] = useState(null);
+
   const [dialogPop, setdialogPop] = useState(false);
   const [dialogData, setdialogData] = useState([]);
   const [postId, setpostId] = useState(1);
@@ -98,6 +98,7 @@ function App() {
 
   const handleCloseComments = () => {
     setdialogPop(false);
+    setdialogData([]);
   };
 
   const handleReload = () => {
